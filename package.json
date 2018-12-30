@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
+    "@vx/axis": "0.0.182",
     "@vx/group": "0.0.182",
     "@vx/scale": "0.0.182",
     "@vx/shape": "0.0.182",
