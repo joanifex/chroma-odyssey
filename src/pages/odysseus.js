@@ -5,6 +5,7 @@ import { AxisBottom, AxisLeft } from '@vx/axis'
 import { Group } from '@vx/group'
 import { Bar } from '@vx/shape'
 import { scaleLinear, scaleBand } from '@vx/scale'
+import styles from './odysseus.module.css'
 
 import Layout from '../components/layout'
 import SEO from '../components/seo'
@@ -80,11 +81,11 @@ export default ({ data }) => {
             return (
               <Group left={margin.left} top={margin.top} key={`bar-${i}`}>
                 <Bar
+                  className={styles[d.color.toLowerCase()]}
                   x={xPoint(d)}
                   y={yMax - barHeight}
                   height={barHeight}
                   width={xScale.bandwidth()}
-                  fill="#fc2e1c"
                   stroke="black"
                 />
               </Group>
