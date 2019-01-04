@@ -8,24 +8,36 @@ exports.createPages = ({ graphql, actions }) => {
         edges {
           node {
             character
+            theme
           }
         }
       }
     }
   `).then(result => {
-    const characters = Array.from(
-      new Set(
-        result.data.allChromaCsv.edges
-          .map(({ node }) => node.character)
-          .filter(character => character.length >= 1)
-      )
+    const nodes = result.data.allChromaCsv.edges.map(edge => edge.node)
+    const nodeValueSets = ['character', 'theme'].reduce(
+      (sets, key) => ({
+        ...sets,
+        [key]: Array.from(
+          new Set(
+            nodes
+              .map(node => node[key])
+              .filter(value => value && value.length >= 1)
+          )
+        ),
+      }),
+      {}
     )
-    characters.forEach(character => {
-      createPage({
-        path: `characters/${character.toLowerCase()}`,
-        component: path.resolve(`./src/templates/character.js`),
-        context: { character },
-      })
+    Object.entries(nodeValueSets).forEach(([key, values]) => {
+      if (key === 'character') {
+        values.forEach(value => {
+          createPage({
+            path: `characters/${value.toLowerCase()}`,
+            component: path.resolve(`./src/templates/character.js`),
+            context: { character: value },
+          })
+        })
+      }
     })
   })
 }
