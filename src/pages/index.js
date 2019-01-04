@@ -14,7 +14,7 @@ export default ({ data }) => {
       <h1>Home</h1>
       <h2>Characters</h2>
       {characters.map(character => (
-        <div>
+        <div id={`${character}-link`}>
           <Link to={`characters/${character}`}>{character}</Link>
         </div>
       ))}
