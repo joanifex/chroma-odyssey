@@ -13,15 +13,13 @@ exports.createPages = ({ graphql, actions }) => {
       }
     }
   `).then(result => {
-    const characters = result.data.allChromaCsv.edges
-      .reduce(
-        (characters, { node }) =>
-          characters.includes(node.character)
-            ? characters
-            : [...characters, node.character],
-        []
+    const characters = Array.from(
+      new Set(
+        result.data.allChromaCsv.edges
+          .map(({ node }) => node.character)
+          .filter(character => character.length >= 1)
       )
-      .filter(character => character.length >= 1)
+    )
     characters.forEach(character => {
       createPage({
         path: `characters/${character.toLowerCase()}`,
