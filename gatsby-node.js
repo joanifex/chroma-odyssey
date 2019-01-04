@@ -29,15 +29,13 @@ exports.createPages = ({ graphql, actions }) => {
       {}
     )
     Object.entries(nodeValueSets).forEach(([key, values]) => {
-      if (key === 'character') {
-        values.forEach(value => {
-          createPage({
-            path: `characters/${value.toLowerCase()}`,
-            component: path.resolve(`./src/templates/character.js`),
-            context: { character: value },
-          })
+      values.forEach(value => {
+        createPage({
+          path: `${key}s/${value.toLowerCase()}`,
+          component: path.resolve(`./src/templates/${key}.js`),
+          context: { value },
         })
-      }
+      })
     })
   })
 }

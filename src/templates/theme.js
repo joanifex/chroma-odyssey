@@ -11,7 +11,7 @@ export default ({ data, pageContext }) => {
   return (
     <Layout>
       <SEO title="" />
-      <h1>{pageContext.value}</h1>
+      <h1>{pageContext.theme}</h1>
       <ColorScale frequencies={frequencies} />
     </Layout>
   )
@@ -19,7 +19,7 @@ export default ({ data, pageContext }) => {
 
 export const query = graphql`
   query($value: String!) {
-    allChromaCsv(filter: { character: { eq: $value } }) {
+    allChromaCsv(filter: { theme: { eq: $value } }) {
       edges {
         node {
           color
