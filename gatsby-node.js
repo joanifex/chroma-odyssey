@@ -1,7 +1,33 @@
-/**
- * Implement Gatsby's Node APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/node-apis/
- */
+const path = require('path')
 
-// You can delete this file if you're not using it
+exports.createPages = ({ graphql, actions }) => {
+  const { createPage } = actions
+  return graphql(`
+    {
+      allChromaCsv {
+        edges {
+          node {
+            character
+          }
+        }
+      }
+    }
+  `).then(result => {
+    const characters = result.data.allChromaCsv.edges
+      .reduce(
+        (characters, { node }) =>
+          characters.includes(node.character)
+            ? characters
+            : [...characters, node.character],
+        []
+      )
+      .filter(character => character.length >= 1)
+    characters.forEach(character => {
+      createPage({
+        path: `characters/${character.toLowerCase()}`,
+        component: path.resolve(`./src/templates/character.js`),
+        context: { character },
+      })
+    })
+  })
+}
