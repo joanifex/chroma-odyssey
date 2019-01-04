@@ -8,6 +8,7 @@ exports.createPages = ({ graphql, actions }) => {
         edges {
           node {
             character
+            location
             theme
           }
         }
@@ -15,7 +16,7 @@ exports.createPages = ({ graphql, actions }) => {
     }
   `).then(result => {
     const nodes = result.data.allChromaCsv.edges.map(edge => edge.node)
-    const nodeValueSets = ['character', 'theme'].reduce(
+    const nodeValueSets = ['character', 'location', 'theme'].reduce(
       (sets, key) => ({
         ...sets,
         [key]: Array.from(
