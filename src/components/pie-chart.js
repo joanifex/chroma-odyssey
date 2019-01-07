@@ -3,7 +3,7 @@ import React from 'react'
 import { Pie } from '@vx/shape'
 import { Group } from '@vx/group'
 
-import styles from './colorScale.module.css'
+import styles from './colors.module.css'
 
 const black = '#000000'
 

@@ -3,7 +3,7 @@ import { graphql } from 'gatsby'
 import sumNodeColors from '../helpers/sumNodeColors'
 
 import Layout from '../components/layout'
-import PieChart from '../components/pieChart'
+import PieChart from '../components/pie-chart'
 import SEO from '../components/seo'
 
 export default ({ data, pageContext }) => {

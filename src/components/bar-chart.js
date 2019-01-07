@@ -5,7 +5,7 @@ import { Group } from '@vx/group'
 import { Bar } from '@vx/shape'
 import { scaleLinear, scaleBand } from '@vx/scale'
 
-import styles from './colorScale.module.css'
+import styles from './colors.module.css'
 
 const ColorScale = ({ frequencies }) => {
   const width = 750
