@@ -36,41 +36,49 @@ export default ({ data }) => {
       <SEO title="Home" keywords={['gatsby', 'application', 'react']} />
       <h1>Home</h1>
       <h2>Characters</h2>
-      {characters.map(character => (
-        <div className={styles.row} key={`${character}-link`}>
-          <Link to={`characters/${character}`}>{character}</Link>
-          <Badge
-            frequencies={findFrequenciesByPropertyValue(edges, {
-              property: 'character',
-              value: character,
-            })}
-          />
-        </div>
-      ))}
+      <div className={styles.grid}>
+        {characters.map(character => (
+          <>
+            <Link to={`characters/${character}`}>{character}</Link>
+            <Badge
+              frequencies={findFrequenciesByPropertyValue(edges, {
+                property: 'character',
+                value: character,
+              })}
+            />
+          </>
+        ))}
+      </div>
+      <hr />
       <h2>Locations</h2>
-      {locations.map(location => (
-        <div className={styles.row} key={`${location}-link`}>
-          <Link to={`locations/${location}`}>{location}</Link>
-          <Badge
-            frequencies={findFrequenciesByPropertyValue(edges, {
-              property: 'location',
-              value: location,
-            })}
-          />
-        </div>
-      ))}
+      <div className={styles.grid}>
+        {locations.map(location => (
+          <>
+            <Link to={`locations/${location}`}>{location}</Link>
+            <Badge
+              frequencies={findFrequenciesByPropertyValue(edges, {
+                property: 'location',
+                value: location,
+              })}
+            />
+          </>
+        ))}
+      </div>
+      <hr />
       <h2>Themes</h2>
-      {themes.map(theme => (
-        <div className={styles.row} key={`${theme}-link`}>
-          <Link to={`themes/${theme}`}>{theme}</Link>
-          <Badge
-            frequencies={findFrequenciesByPropertyValue(edges, {
-              property: 'theme',
-              value: theme,
-            })}
-          />
-        </div>
-      ))}
+      <div className={styles.grid}>
+        {themes.map(theme => (
+          <>
+            <Link to={`themes/${theme}`}>{theme}</Link>
+            <Badge
+              frequencies={findFrequenciesByPropertyValue(edges, {
+                property: 'theme',
+                value: theme,
+              })}
+            />
+          </>
+        ))}
+      </div>
     </Layout>
   )
 }
