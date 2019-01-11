@@ -3,6 +3,7 @@ import { Link, graphql } from 'gatsby'
 import Badge from '../components/badge'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
+import styles from './index.module.css'
 
 const findFrequenciesByPropertyValue = (edges, { property, value }) => {
   return edges.reduce(
@@ -36,7 +37,7 @@ export default ({ data }) => {
       <h1>Home</h1>
       <h2>Characters</h2>
       {characters.map(character => (
-        <div key={`${character}-link`}>
+        <div className={styles.row} key={`${character}-link`}>
           <Link to={`characters/${character}`}>{character}</Link>
           <Badge
             frequencies={findFrequenciesByPropertyValue(edges, {
@@ -48,7 +49,7 @@ export default ({ data }) => {
       ))}
       <h2>Locations</h2>
       {locations.map(location => (
-        <div key={`${location}-link`}>
+        <div className={styles.row} key={`${location}-link`}>
           <Link to={`locations/${location}`}>{location}</Link>
           <Badge
             frequencies={findFrequenciesByPropertyValue(edges, {
@@ -60,7 +61,7 @@ export default ({ data }) => {
       ))}
       <h2>Themes</h2>
       {themes.map(theme => (
-        <div key={`${theme}-link`}>
+        <div className={styles.row} key={`${theme}-link`}>
           <Link to={`themes/${theme}`}>{theme}</Link>
           <Badge
             frequencies={findFrequenciesByPropertyValue(edges, {
