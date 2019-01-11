@@ -2,13 +2,14 @@ import React from 'react'
 
 import { AxisBottom, AxisLeft } from '@vx/axis'
 import { Group } from '@vx/group'
+import { ScaleSVG } from '@vx/shape'
 import { Bar } from '@vx/shape'
 import { scaleLinear, scaleBand } from '@vx/scale'
 
 import styles from './colors.module.css'
 
 const ColorScale = ({ frequencies }) => {
-  const width = 750
+  const width = 500
   const height = 500
   const margin = { top: 50, bottom: 50, left: 50, right: 50 }
 
@@ -41,7 +42,7 @@ const ColorScale = ({ frequencies }) => {
   )
 
   return (
-    <svg width={width} height={height}>
+    <ScaleSVG width={width} height={height}>
       <Group>
         <AxisBottom
           top={yMax + margin.top}
@@ -75,7 +76,7 @@ const ColorScale = ({ frequencies }) => {
           )
         })}
       </Group>
-    </svg>
+    </ScaleSVG>
   )
 }
 

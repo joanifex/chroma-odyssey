@@ -1,24 +1,25 @@
 import React from 'react'
 
-import { Pie } from '@vx/shape'
 import { Group } from '@vx/group'
+import { ScaleSVG } from '@vx/responsive'
+import { Pie } from '@vx/shape'
 
 import styles from './colors.module.css'
 
 const black = '#000000'
 
 const PieChart = ({ frequencies }) => {
-  const width = 750
   const height = 500
-  const margin = { top: 50, bottom: 50, left: 50, right: 50 }
+  const width = 500
 
   const radius = Math.min(width, height) / 2
+
   const centerY = height / 2
   const centerX = width / 2
 
   return (
-    <svg width={width} height={height}>
-      <Group top={centerY - margin.top} left={centerX}>
+    <ScaleSVG width={width} height={height}>
+      <Group top={centerY} left={centerX}>
         <Pie
           data={frequencies}
           pieValue={d => d.value}
@@ -57,7 +58,7 @@ const PieChart = ({ frequencies }) => {
           }}
         </Pie>
       </Group>
-    </svg>
+    </ScaleSVG>
   )
 }
 
