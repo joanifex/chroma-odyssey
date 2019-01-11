@@ -6,6 +6,7 @@
   "dependencies": {
     "@vx/axis": "0.0.182",
     "@vx/group": "0.0.182",
+    "@vx/responsive": "0.0.183",
     "@vx/scale": "0.0.182",
     "@vx/shape": "0.0.182",
     "gatsby": "^2.0.53",
