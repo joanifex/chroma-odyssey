@@ -11,7 +11,7 @@ export default ({ data, pageContext }) => {
   return (
     <Layout>
       <SEO title="" />
-      <h1>{pageContext.theme}</h1>
+      <h1>{pageContext.value}</h1>
       <PieChart frequencies={frequencies} />
     </Layout>
   )

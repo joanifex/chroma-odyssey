@@ -23,13 +23,25 @@ const findFrequenciesByPropertyValue = (edges, { property, value }) => {
 export default ({ data }) => {
   const { edges } = data.allChromaCsv
   const characters = Array.from(
-    new Set(edges.map(({ node }) => node.character.toLowerCase()))
+    new Set(
+      edges
+        .filter(({ node }) => node.character.length > 1)
+        .map(({ node }) => node.character.toLowerCase())
+    )
   )
   const locations = Array.from(
-    new Set(edges.map(({ node }) => node.location.toLowerCase()))
+    new Set(
+      edges
+        .filter(({ node }) => node.location.length > 1)
+        .map(({ node }) => node.location.toLowerCase())
+    )
   )
   const themes = Array.from(
-    new Set(edges.map(({ node }) => node.theme.toLowerCase()))
+    new Set(
+      edges
+        .filter(({ node }) => node.theme.length > 1)
+        .map(({ node }) => node.theme.toLowerCase())
+    )
   )
   return (
     <Layout>
