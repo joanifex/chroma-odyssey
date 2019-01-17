@@ -1,3 +1,7 @@
+require('dotenv').config({
+  path: `.env`,
+})
+
 module.exports = {
   siteMetadata: {
     title: 'Chroma: Odyssey',
@@ -24,6 +28,17 @@ module.exports = {
       options: {
         name: `src`,
         path: `${__dirname}/src/data`,
+      },
+    },
+    {
+      resolve: 'gatsby-source-airtable',
+      options: {
+        tables: [
+          {
+            baseId: 'app1ix0EO5NGUn2SR',
+            tableName: 'Main',
+          },
+        ],
       },
     },
     'gatsby-transformer-csv',
