@@ -9,7 +9,7 @@
     "@vx/responsive": "0.0.183",
     "@vx/scale": "0.0.182",
     "@vx/shape": "0.0.182",
-    "gatsby": "^2.0.53",
+    "gatsby": "^2.0.91",
     "gatsby-image": "^2.0.20",
     "gatsby-plugin-manifest": "^2.0.9",
     "gatsby-plugin-offline": "^2.0.16",
