@@ -7,7 +7,7 @@ import PieChart from '../components/pie-chart'
 import SEO from '../components/seo'
 
 export default ({ data, pageContext }) => {
-  const frequencies = sumNodeColors(data.allChromaCsv.edges)
+  const frequencies = sumNodeColors(data.allAirtable.edges)
   return (
     <Layout>
       <SEO title="" />
@@ -19,10 +19,12 @@ export default ({ data, pageContext }) => {
 
 export const query = graphql`
   query($value: String!) {
-    allChromaCsv(filter: { location: { eq: $value } }) {
+    allAirtable(filter: { data: { location: { eq: $value } } }) {
       edges {
         node {
-          color
+          data {
+            color
+          }
         }
       }
     }

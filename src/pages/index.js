@@ -7,12 +7,12 @@ import styles from './index.module.css'
 
 const findFrequenciesByPropertyValue = (edges, { property, value }) => {
   return edges.reduce(
-    (colors, { node }) =>
-      node[property].toLowerCase() === value
+    (colors, { node: { data } }) =>
+      data[property] && data[property].toLowerCase() === value
         ? {
             ...colors,
-            [node.color]: colors.hasOwnProperty(node.color)
-              ? colors[node.color] + 1
+            [data.color]: colors.hasOwnProperty(data.color)
+              ? colors[data.color] + 1
               : 1,
           }
         : colors,
@@ -21,26 +21,26 @@ const findFrequenciesByPropertyValue = (edges, { property, value }) => {
 }
 
 export default ({ data }) => {
-  const { edges } = data.allChromaCsv
+  const { edges } = data.allAirtable
   const characters = Array.from(
     new Set(
       edges
-        .filter(({ node }) => node.character.length > 1)
-        .map(({ node }) => node.character.toLowerCase())
+        .filter(({ node: { data } }) => data.character)
+        .map(({ node: { data } }) => data.character.toLowerCase())
     )
   )
   const locations = Array.from(
     new Set(
       edges
-        .filter(({ node }) => node.location.length > 1)
-        .map(({ node }) => node.location.toLowerCase())
+        .filter(({ node: { data } }) => data.location)
+        .map(({ node: { data } }) => data.location.toLowerCase())
     )
   )
   const themes = Array.from(
     new Set(
       edges
-        .filter(({ node }) => node.theme.length > 1)
-        .map(({ node }) => node.theme.toLowerCase())
+        .filter(({ node: { data } }) => data.theme)
+        .map(({ node: { data } }) => data.theme.toLowerCase())
     )
   )
   return (
@@ -97,13 +97,15 @@ export default ({ data }) => {
 
 export const query = graphql`
   query {
-    allChromaCsv {
+    allAirtable {
       edges {
         node {
-          character
-          color
-          location
-          theme
+          data {
+            character
+            color
+            location
+            theme
+          }
         }
       }
     }

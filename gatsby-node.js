@@ -4,18 +4,20 @@ exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
   return graphql(`
     {
-      allChromaCsv {
+      allAirtable(filter: { table: { eq: "Main" } }) {
         edges {
           node {
-            character
-            location
-            theme
+            data {
+              character
+              location
+              theme
+            }
           }
         }
       }
     }
   `).then(result => {
-    const nodes = result.data.allChromaCsv.edges.map(edge => edge.node)
+    const nodes = result.data.allAirtable.edges.map(edge => edge.node.data)
     const nodeValueSets = ['character', 'location', 'theme'].reduce(
       (sets, key) => ({
         ...sets,
