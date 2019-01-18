@@ -19,6 +19,7 @@ const Badge = ({ frequencies }) => {
                 <rect
                   className={colorStyles[color.toLowerCase()]}
                   height="16"
+                  key={color}
                   width={frequencyWidth}
                   x={nextRectWidth}
                 />

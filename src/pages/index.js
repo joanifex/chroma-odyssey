@@ -53,12 +53,15 @@ export default ({ data }) => {
       <div className={styles.grid}>
         {books.map(book => (
           <>
-            <Link to={`books/${book}`}>{book}</Link>
+            <Link key={`${book}-link`} to={`books/${book}`}>
+              {book}
+            </Link>
             <Badge
               frequencies={findFrequenciesByPropertyValue(edges, {
                 property: 'book',
                 value: book,
               })}
+              key={`${book}-badge`}
             />
           </>
         ))}
@@ -68,12 +71,15 @@ export default ({ data }) => {
       <div className={styles.grid}>
         {characters.map(character => (
           <>
-            <Link to={`characters/${character}`}>{character}</Link>
+            <Link key={`${character}-link`} to={`characters/${character}`}>
+              {character}
+            </Link>
             <Badge
               frequencies={findFrequenciesByPropertyValue(edges, {
                 property: 'character',
                 value: character,
               })}
+              key={`${character}-badge`}
             />
           </>
         ))}
@@ -83,12 +89,15 @@ export default ({ data }) => {
       <div className={styles.grid}>
         {locations.map(location => (
           <>
-            <Link to={`locations/${location}`}>{location}</Link>
+            <Link key={`${location}-link`} to={`locations/${location}`}>
+              {location}
+            </Link>
             <Badge
               frequencies={findFrequenciesByPropertyValue(edges, {
                 property: 'location',
                 value: location,
               })}
+              key={`${location}-badge`}
             />
           </>
         ))}
@@ -98,12 +107,15 @@ export default ({ data }) => {
       <div className={styles.grid}>
         {themes.map(theme => (
           <>
-            <Link to={`themes/${theme}`}>{theme}</Link>
+            <Link key={`${theme}-link`} to={`themes/${theme}`}>
+              {theme}
+            </Link>
             <Badge
               frequencies={findFrequenciesByPropertyValue(edges, {
                 property: 'theme',
                 value: theme,
               })}
+              key={`${theme}-badge`}
             />
           </>
         ))}
