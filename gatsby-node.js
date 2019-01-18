@@ -8,6 +8,7 @@ exports.createPages = ({ graphql, actions }) => {
         edges {
           node {
             data {
+              book
               character
               location
               theme
@@ -18,15 +19,11 @@ exports.createPages = ({ graphql, actions }) => {
     }
   `).then(result => {
     const nodes = result.data.allAirtable.edges.map(edge => edge.node.data)
-    const nodeValueSets = ['character', 'location', 'theme'].reduce(
+    const nodeValueSets = ['book', 'character', 'location', 'theme'].reduce(
       (sets, key) => ({
         ...sets,
         [key]: Array.from(
-          new Set(
-            nodes
-              .map(node => node[key])
-              .filter(value => value && value.length >= 1)
-          )
+          new Set(nodes.map(node => node[key]).filter(value => !!value))
         ),
       }),
       {}
