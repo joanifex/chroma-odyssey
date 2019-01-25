@@ -1,5 +1,4 @@
 import React from 'react'
-import styles from './bar.css'
 
 const Bar = ({ frequencies }) => {
   const frequencySum = Object.values(frequencies).reduce(
