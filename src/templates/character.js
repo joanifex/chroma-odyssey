@@ -2,6 +2,7 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import sumNodeColors from '../helpers/sumNodeColors'
 
+import Bar from '../components/bar'
 import Layout from '../components/layout'
 import PieChart from '../components/pie-chart'
 import SEO from '../components/seo'
@@ -12,6 +13,7 @@ export default ({ data, pageContext }) => {
     <Layout>
       <SEO title="" />
       <h1>{pageContext.value}</h1>
+      <Bar frequencies={frequencies} />
       <PieChart frequencies={frequencies} />
     </Layout>
   )
