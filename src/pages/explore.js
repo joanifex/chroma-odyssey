@@ -126,7 +126,7 @@ export default ({ data }) => {
 
 export const query = graphql`
   query {
-    allAirtable {
+    allAirtable(filter: { table: { eq: "Main" } }) {
       edges {
         node {
           data {

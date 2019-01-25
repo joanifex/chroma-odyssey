@@ -38,6 +38,10 @@ module.exports = {
             baseId: 'app1ix0EO5NGUn2SR',
             tableName: 'Main',
           },
+          {
+            baseId: 'app1ix0EO5NGUn2SR',
+            tableName: 'Colors',
+          },
         ],
       },
     },
