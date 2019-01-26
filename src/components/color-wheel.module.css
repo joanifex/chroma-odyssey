@@ -1,0 +1,8 @@
+.path {
+}
+
+.path:focus {
+  outline: none;
+  stroke-width: 5px;
+  stroke: black;
+}
