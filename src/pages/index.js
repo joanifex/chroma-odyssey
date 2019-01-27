@@ -5,7 +5,6 @@ import ColorWheel from '../components/color-wheel'
 import SEO from '../components/seo'
 
 export default ({ data }) => {
-  const colors = data.allAirtable.edges.map(({ node: { data } }) => data)
   return (
     <Layout>
       <SEO title="Home" keywords={['gatsby', 'application', 'react']} />
