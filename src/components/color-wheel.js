@@ -8,7 +8,7 @@ const BANDS = 2
 const BAND_WIDTH = (SIZE - SIZE_INNER) / BANDS
 const MIN_OPACITY = 0.1
 const OPACITY_STEP = (1 - MIN_OPACITY) / BANDS
-const COUNT = 8
+const COUNT = 6
 const COLORS = range(COUNT).map((d, i) => interpolateRainbow(i / COUNT))
 const SVG_ID = 'color-wheel'
 
@@ -26,6 +26,7 @@ const createColorWheel = handleFocusChange => {
       .innerRadius((SIZE - (k + 1) * BAND_WIDTH) / 2)
       .startAngle(0)
       .endAngle((2 * Math.PI) / COUNT)
+      .padAngle((2 * Math.PI) / (COUNT * 40))
     svg
       .append('g')
       .attr('class', 'band')
@@ -41,13 +42,13 @@ const createColorWheel = handleFocusChange => {
         return `${c}`
       })
       .attr('stroke', '#fff')
-      .attr('stroke-width', 3)
+      .attr('stroke-width', 2)
       .attr('transform', (d, i) => `rotate(${i * (360 / COUNT)})`)
       .attr('d', colorArc())
       .on('mouseover', (d, i) => {
         handleFocusChange(i)
       })
-      .on('focus', (d, i) => {
+      .on('focus', function(d, i) {
         handleFocusChange(i)
       })
   })

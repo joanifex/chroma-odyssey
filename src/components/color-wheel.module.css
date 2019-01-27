@@ -3,6 +3,5 @@
 
 .path:focus {
   outline: none;
-  stroke-width: 5px;
-  stroke: black;
+  stroke: #111111;
 }
