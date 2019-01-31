@@ -6,7 +6,7 @@ import ColorWheel from '../components/color-wheel'
 import SEO from '../components/seo'
 import styles from './index.module.css'
 
-class SegmentExplorer extends React.Component {
+export default class Home extends React.Component {
   state = { segment: null }
 
   handleUpdateSegment = segment => {
@@ -14,33 +14,31 @@ class SegmentExplorer extends React.Component {
   }
 
   render() {
+    const colors = this.props.data.allAirtable.edges
+      .map(({ node }) => node)
+      .filter(node => node.fields)
+    const segments = groupBy(colors, 'fields.segment')
     const { segment } = this.state
     return (
-      <div className={styles.segmentExplorer}>
-        <ColorWheel handleFocusChange={this.handleUpdateSegment} />
-        <ul>
-          {segment &&
-            this.props.segments[segment] &&
-            this.props.segments[segment].map(reference => (
-              <li key={reference.data.Color}>{reference.data.Color}</li>
-            ))}
-        </ul>
-      </div>
+      <Layout>
+        <SEO title="Home" keywords={['gatsby', 'application', 'react']} />
+        <div className={styles.segmentExplorer}>
+          <ColorWheel handleFocusChange={this.handleUpdateSegment} />
+          <ul>
+            {!segment &&
+              colors.map(reference => (
+                <li key={reference.data.Color}>{reference.data.Color}</li>
+              ))}
+            {segment &&
+              segments[segment] &&
+              segments[segment].map(reference => (
+                <li key={reference.data.Color}>{reference.data.Color}</li>
+              ))}
+          </ul>
+        </div>
+      </Layout>
     )
   }
-}
-
-export default ({ data }) => {
-  const colors = data.allAirtable.edges
-    .map(({ node }) => node)
-    .filter(node => node.fields)
-  const segments = groupBy(colors, 'fields.segment')
-  return (
-    <Layout>
-      <SEO title="Home" keywords={['gatsby', 'application', 'react']} />
-      <SegmentExplorer segments={segments} />
-    </Layout>
-  )
 }
 
 export const query = graphql`
