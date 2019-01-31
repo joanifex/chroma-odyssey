@@ -17,7 +17,13 @@ class SegmentExplorer extends React.Component {
     return (
       <div>
         <ColorWheel handleFocusChange={this.handleUpdateSegment} />
-        <p>{segment && JSON.stringify(this.props.segments[segment])}</p>
+        <ul>
+          {segment &&
+            this.props.segments[segment] &&
+            this.props.segments[segment].map(reference => (
+              <li key={reference.data.Color}>{reference.data.Color}</li>
+            ))}
+        </ul>
       </div>
     )
   }
