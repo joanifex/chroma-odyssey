@@ -45,26 +45,15 @@ const createColorWheel = handleFocusChange => {
       .attr('stroke-width', 2)
       .attr('transform', (d, i) => `rotate(${i * (360 / COUNT)})`)
       .attr('d', colorArc())
-      .on('mouseover', (d, i) => {
-        handleFocusChange(i)
-      })
       .on('focus', function(d, i) {
-        handleFocusChange(i)
+        handleFocusChange(i + 1)
       })
   })
 }
 
 class ColorWheel extends React.Component {
-  state = {
-    focused: null,
-  }
-
   componentDidMount() {
-    createColorWheel(this.handleFocusChange)
-  }
-
-  handleFocusChange = focused => {
-    this.setState({ focused })
+    createColorWheel(this.props.handleFocusChange)
   }
 
   render() {
