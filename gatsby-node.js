@@ -1,4 +1,6 @@
 const path = require('path')
+const d3 = require('d3')
+const chroma = require('chroma-js')
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
@@ -38,4 +40,19 @@ exports.createPages = ({ graphql, actions }) => {
       })
     })
   })
+}
+
+exports.onCreateNode = ({ node, actions: { createNodeField } }) => {
+  if (node.table === 'Colors' && node.data.hexcode) {
+    const colors = d3.range(6).map((d, i) => d3.interpolateRainbow(i / 6))
+    const distances = colors.map((color, i) => ({
+      distance: chroma.distance(node.data.hexcode, color),
+      segment: i + 1,
+    }))
+    const closest = d3.min(distances, d => d.distance)
+    const { segment } = distances.find(
+      distance => distance.distance === closest
+    )
+    createNodeField({ node, name: 'segment', value: segment })
+  }
 }
