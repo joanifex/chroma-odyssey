@@ -4,6 +4,7 @@ import groupBy from 'lodash.groupby'
 import Layout from '../components/layout'
 import ColorWheel from '../components/color-wheel'
 import SEO from '../components/seo'
+import styles from './index.module.css'
 
 class SegmentExplorer extends React.Component {
   state = { segment: null }
@@ -15,7 +16,7 @@ class SegmentExplorer extends React.Component {
   render() {
     const { segment } = this.state
     return (
-      <div>
+      <div className={styles.segmentExplorer}>
         <ColorWheel handleFocusChange={this.handleUpdateSegment} />
         <ul>
           {segment &&
