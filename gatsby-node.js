@@ -44,7 +44,10 @@ exports.createPages = ({ graphql, actions }) => {
 
 exports.onCreateNode = ({ node, actions: { createNodeField } }) => {
   if (node.table === 'Colors' && node.data.hexcode) {
-    const colors = d3.range(6).map((d, i) => d3.interpolateRainbow(i / 6))
+    const colorCount = 8
+    const colors = d3
+      .range(colorCount)
+      .map((d, i) => d3.interpolateRainbow(i / colorCount))
     const distances = colors.map((color, i) => ({
       distance: chroma.distance(node.data.hexcode, color),
       segment: i + 1,

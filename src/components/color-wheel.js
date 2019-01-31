@@ -8,7 +8,7 @@ const BANDS = 2
 const BAND_WIDTH = (SIZE - SIZE_INNER) / BANDS
 const MIN_OPACITY = 0.1
 const OPACITY_STEP = (1 - MIN_OPACITY) / BANDS
-const COUNT = 6
+const COUNT = 8
 const COLORS = range(COUNT).map((d, i) => interpolateRainbow(i / COUNT))
 const SVG_ID = 'color-wheel'
 
