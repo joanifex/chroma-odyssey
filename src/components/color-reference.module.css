@@ -1,0 +1,13 @@
+.colorReference {
+  align-items: center;
+  border: 1px solid #cccccc;
+  display: flex;
+  padding: 1rem 2rem;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.colorBox {
+  height: 1rem;
+  width: 1rem;
+}

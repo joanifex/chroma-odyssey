@@ -1,8 +1,9 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import groupBy from 'lodash.groupby'
-import Layout from '../components/layout'
+import ColorReference from '../components/color-reference'
 import ColorWheel from '../components/color-wheel'
+import Layout from '../components/layout'
 import SEO from '../components/seo'
 import styles from './index.module.css'
 
@@ -27,12 +28,18 @@ export default class Home extends React.Component {
           <ul>
             {!segment &&
               colors.map(reference => (
-                <li key={reference.data.Color}>{reference.data.Color}</li>
+                <ColorReference
+                  key={reference.data.Color}
+                  reference={reference}
+                />
               ))}
             {segment &&
               segments[segment] &&
               segments[segment].map(reference => (
-                <li key={reference.data.Color}>{reference.data.Color}</li>
+                <ColorReference
+                  key={reference.data.Color}
+                  reference={reference}
+                />
               ))}
           </ul>
         </div>
