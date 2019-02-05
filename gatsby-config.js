@@ -28,11 +28,11 @@ module.exports = {
       options: {
         tables: [
           {
-            baseId: 'app1ix0EO5NGUn2SR',
+            baseId: 'appu1ESPUJF7NHdoq',
             tableName: 'Main',
           },
           {
-            baseId: 'app1ix0EO5NGUn2SR',
+            baseId: 'appu1ESPUJF7NHdoq',
             tableName: 'Colors',
           },
         ],

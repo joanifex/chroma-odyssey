@@ -3,11 +3,11 @@ import styles from './color-reference.module.css'
 
 export default ({
   reference: {
-    data: { Color, hexcode },
+    data: { color, hexcode },
   },
 }) => (
   <li className={styles.colorReference}>
-    {Color}
+    {color}
     <div className={styles.colorBox} style={{ backgroundColor: hexcode }} />
   </li>
 )
