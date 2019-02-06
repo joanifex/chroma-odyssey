@@ -4,6 +4,21 @@ import * as d3 from 'd3'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 
+const rootColors = {
+  black: '#222222',
+  blue: 'blue',
+  bronze: 'bronze',
+  gold: 'gold',
+  green: 'green',
+  grey: 'grey',
+  orange: 'orange',
+  purple: 'purple',
+  red: 'red',
+  silver: 'silver',
+  white: 'white',
+  yellow: 'yellow',
+}
+
 const buildHierarchy = nodes => {
   const children = nodes.map(node => {
     const [parent] = node.color.split('-')
@@ -74,7 +89,11 @@ const createSunburst = data => {
     .attr('d', arc)
     .attr('fill-rule', 'evenodd')
     .style('fill', function(d) {
-      return d.data.hexcode ? d.data.hexcode : 'black'
+      return d.data.data.hexcode
+        ? d.data.data.hexcode
+        : rootColors[d.data.data.color]
+        ? rootColors[d.data.data.color]
+        : 'black'
     })
   // .on('mouseover', mouseover)
 }
@@ -104,6 +123,7 @@ export const query = graphql`
         node {
           data {
             color
+            hexcode
           }
         }
       }
