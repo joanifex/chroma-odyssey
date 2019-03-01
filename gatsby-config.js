@@ -30,6 +30,7 @@ module.exports = {
           {
             baseId: 'appu1ESPUJF7NHdoq',
             tableName: 'Main',
+            tableLinks: ['color-reference'],
           },
           {
             baseId: 'appu1ESPUJF7NHdoq',

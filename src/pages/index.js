@@ -11,16 +11,17 @@ const colorsByCharacter = edges => {
 
   for (const {
     node: {
-      data: { character, color },
+      data: { character, color, color_reference },
     },
   } of edges) {
-    if (!(character in data)) {
-      data[character] = {}
-    }
-    if (!(color in data[character])) {
-      data[character][color] = 1
-    } else {
-      data[character][color] = data[character][color] + 1
+    if (color_reference) {
+      const { hexcode } = color_reference[0].data
+      if (!(character in data)) {
+        data[character] = []
+      }
+      if (!data[character].find(entry => entry.color === color)) {
+        data[character].push({ color, hexcode })
+      }
     }
   }
   return data
@@ -29,6 +30,7 @@ const colorsByCharacter = edges => {
 export default ({ data }) => {
   const colorData = colorsByCharacter(data.allAirtable.edges)
 
+  console.log(colorData)
   return (
     <Layout>
       <SEO title="Home" keywords={['gatsby', 'application', 'react']} />
@@ -40,9 +42,7 @@ export default ({ data }) => {
             width={500}
             height={500}
             margin={0}
-            data={Object.entries(colorData[character]).map(
-              ([color, count]) => ({ color, count })
-            )}
+            data={colorData[character]}
           />
         </div>
       ))}
@@ -58,6 +58,11 @@ export const query = graphql`
           data {
             character
             color
+            color_reference {
+              data {
+                hexcode
+              }
+            }
           }
         }
       }
