@@ -13,16 +13,16 @@ export default ({ data, pageContext }) => {
   )
 }
 
-export const query = graphql`
-  query($value: String!) {
-    allAirtable(filter: { data: { theme: { eq: $value } } }) {
-      edges {
-        node {
-          data {
-            color
-          }
-        }
-      }
-    }
-  }
-`
+// export const query = graphql`
+//   query($value: String!) {
+//     allAirtable(filter: { data: { theme: { eq: $value } } }) {
+//       edges {
+//         node {
+//           data {
+//             color
+//           }
+//         }
+//       }
+//     }
+//   }
+// `

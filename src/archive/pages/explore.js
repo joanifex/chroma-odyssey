@@ -124,21 +124,3 @@ export default ({ data }) => {
     </Layout>
   )
 }
-
-export const query = graphql`
-  query {
-    allAirtable(filter: { table: { eq: "Main" } }) {
-      edges {
-        node {
-          data {
-            book
-            character
-            color
-            location
-            theme
-          }
-        }
-      }
-    }
-  }
-`

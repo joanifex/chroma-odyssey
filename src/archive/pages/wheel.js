@@ -47,21 +47,3 @@ export default class Wheel extends React.Component {
     )
   }
 }
-
-// export const query = graphql`
-//   query {
-//     allAirtable(filter: { table: { eq: "Colors" } }) {
-//       edges {
-//         node {
-//           data {
-//             color
-//             hexcode
-//           }
-//           fields {
-//             segment
-//           }
-//         }
-//       }
-//     }
-//   }
-// `

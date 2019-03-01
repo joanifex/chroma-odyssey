@@ -12,17 +12,3 @@ export default ({ data, pageContext }) => {
     </Layout>
   )
 }
-
-export const query = graphql`
-  query($value: String!) {
-    allAirtable(filter: { data: { book: { eq: $value } } }) {
-      edges {
-        node {
-          data {
-            color
-          }
-        }
-      }
-    }
-  }
-`
