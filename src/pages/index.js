@@ -1,22 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import * as d3 from 'd3'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
-
-const findFrequenciesByPropertyValue = (edges, { property, value }) =>
-  edges.reduce(
-    (colors, { node: { data } }) =>
-      data[property] && data[property].toLowerCase() === value
-        ? {
-            ...colors,
-            [data.color]: colors.hasOwnProperty(data.color)
-              ? colors[data.color] + 1
-              : 1,
-          }
-        : colors,
-    {}
-  )
 
 export default ({ data }) => {
   const { edges } = data.allAirtable
@@ -35,14 +20,6 @@ export default ({ data }) => {
         {characters.map(character => (
           <div key={character}>
             <div>{JSON.stringify(character)}</div>
-            <div>
-              {JSON.stringify(
-                findFrequenciesByPropertyValue(edges, {
-                  property: 'character',
-                  value: character,
-                })
-              )}
-            </div>
           </div>
         ))}
       </div>
