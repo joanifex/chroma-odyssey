@@ -4,6 +4,10 @@
   "version": "1.0.0",
   "author": "Ian Wright",
   "dependencies": {
+    "@vx/group": "^0.0.183",
+    "@vx/mock-data": "^0.0.185",
+    "@vx/scale": "^0.0.182",
+    "@vx/shape": "^0.0.184",
     "chroma-js": "^2.0.2",
     "d3": "^5.7.0",
     "gatsby": "^2.0.91",
