@@ -1,45 +1,51 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import Layout from '../components/layout'
+import Pie from '../components/pie'
 import SEO from '../components/seo'
 
-export default ({ data }) => {
-  const { edges } = data.allAirtable
-  // const characters = Array.from(
-  //   new Set(
-  //     edges
-  //       .filter(({ node: { data } }) => data.character)
-  //       .map(({ node: { data } }) => data.character.toLowerCase())
-  //   )
-  // ).sort((a, b) => a.localeCompare(b))
-  //
-  const colorsByCharacter = {}
+const CHARACTERS = ['Odysseus']
+
+const colorsByCharacter = edges => {
+  const data = {}
+
   for (const {
     node: {
       data: { character, color },
     },
   } of edges) {
-    if (!(character in colorsByCharacter)) {
-      colorsByCharacter[character] = {}
+    if (!(character in data)) {
+      data[character] = {}
     }
-    if (!(color in colorsByCharacter[character])) {
-      colorsByCharacter[character][color] = 1
+    if (!(color in data[character])) {
+      data[character][color] = 1
     } else {
-      colorsByCharacter[character][color] =
-        colorsByCharacter[character][color] + 1
+      data[character][color] = data[character][color] + 1
     }
   }
+  return data
+}
 
-  console.log(colorsByCharacter)
+export default ({ data }) => {
+  const colorData = colorsByCharacter(data.allAirtable.edges)
 
   return (
     <Layout>
       <SEO title="Home" keywords={['gatsby', 'application', 'react']} />
       <h2>Characters</h2>
-      <div>
-        <h3>Odysseus</h3>
-        <div>{JSON.stringify(colorsByCharacter.Odysseus)}</div>
-      </div>
+      {CHARACTERS.map(character => (
+        <div key={character}>
+          <h3>{character}</h3>
+          <Pie
+            width={500}
+            height={500}
+            margin={0}
+            data={Object.entries(colorData[character]).map(
+              ([color, count]) => ({ color, count })
+            )}
+          />
+        </div>
+      ))}
     </Layout>
   )
 }
